@@ -1,0 +1,67 @@
+site_name: Joshua's Workstation
+site_description: Operations Portal
+site_author: Joshua Marshall
+site_url: https://jmfurioso.github.io/workstation
+
+repo_name: jmfurioso/workstation
+repo_url: https://github.com/jmfurioso/workstation
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+
+  language: en
+
+  favicon: assets/favicon.png
+
+  icon:
+    repo: fontawesome/brands/github
+
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: cyan
+
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.action.edit
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - 🏠 Home: index.md
+
+  - 🚀 Build:
+      - New Workstation: workstation-rollout.md
+      - Acceptance Test: acceptance-test.md
+
+  - 🧰 Components:
+      - Component Installers: component-installers.md
+
+  - 🎨 Personalization:
+      - Desktop Customization: desktop-customization.md
