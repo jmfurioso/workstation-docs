@@ -1,18 +1,17 @@
-site_name: Joshua's Workstation
+site_name: Mono's Workstation
 site_description: Operations Portal
 site_author: Joshua Marshall
-site_url: https://jmfurioso.github.io/workstation
+site_url: https://jmfurioso.github.io/workstation-docs
 
-repo_name: jmfurioso/workstation
-repo_url: https://github.com/jmfurioso/workstation
+repo_name: jmfurioso/workstation-docs
+repo_url: https://github.com/jmfurioso/workstation-docs
 edit_uri: edit/main/docs/
 
 theme:
   name: material
-
   language: en
 
-  favicon: assets/favicon.png
+  favicon: assets/mono.jpg
 
   icon:
     repo: fontawesome/brands/github

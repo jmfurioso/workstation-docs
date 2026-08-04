@@ -1,10 +1,12 @@
-# 🖥️ Joshua's Workstation
+<img src="assets/mono.jpg" width="160" align="right" alt="Mono">
+
+# Mono's Workstation
 
 > **Automate the repeatable. Synchronize the personal. Document the intentional.**
 
-Welcome to the operations portal for the Joshua Workstation project.
+Welcome to the **Mono's Workstation** operations portal.
 
-This site contains everything required to build, configure, validate, maintain, and eventually recover a workstation.
+This site contains everything required to build, configure, validate, and maintain a Linux workstation.
 
 ---
 
@@ -22,15 +24,15 @@ This site contains everything required to build, configure, validate, maintain, 
 
 -   ### 🧰 Install Components
 
-    Install and configure workstation-specific applications.
+    Install workstation-specific applications.
 
     <a href="component-installers/" class="md-button md-button--primary">
     Component Installers
     </a>
 
--   ### 🎨 Personalize
+-   ### 🎨 Personalization
 
-    Desktop theme, Microsoft PWAs and optional workstation customization.
+    Desktop theme, Microsoft PWAs and optional customization.
 
     <a href="desktop-customization/" class="md-button md-button--primary">
     Personalization
@@ -38,7 +40,7 @@ This site contains everything required to build, configure, validate, maintain, 
 
 -   ### ✅ Validate
 
-    Verify the workstation before considering deployment complete.
+    Verify the workstation before placing it into service.
 
     <a href="acceptance-test/" class="md-button md-button--primary">
     Acceptance Test
@@ -48,7 +50,7 @@ This site contains everything required to build, configure, validate, maintain, 
 
     Backup strategy, recovery procedures and infrastructure planning.
 
-    <a class="md-button" disabled>
+    <a class="md-button">
     Coming Soon
     </a>
 
@@ -63,8 +65,8 @@ This site contains everything required to build, configure, validate, maintain, 
 | Commissioning | ✅ Stable |
 | Bootstrap | ✅ Stable |
 | Component Installers | ✅ Stable |
-| Desktop Personalization | 🟡 Optional |
-| Disaster Recovery | 🚧 In Design |
+| Desktop Personalization | 🟡 Manual |
+| Disaster Recovery | 🚧 Planning |
 
 ---
 
