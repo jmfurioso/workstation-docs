@@ -80,7 +80,7 @@ git pull --rebase
 ### Bootstrap
 
 ```bash
-./scripts/bootstrap.sh
+./scripts/select-bootstrap.sh
 ```
 
 ### Capture

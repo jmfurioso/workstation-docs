@@ -128,12 +128,15 @@ Test the new machine first and remediate only demonstrated problems.
 
 These items are manual and do **not** need to match another workstation.
 
-- [ ] Preferred Plasma theme configured
-- [ ] Window decorations usable
-- [ ] Panel/layout usable
+- [ ] Intended desktop environment launches successfully
+- [ ] No unintended second desktop environment was installed
+- [ ] Displays, orientation, scaling, and refresh rates are correct
+- [ ] Theme and window appearance are usable
+- [ ] Panel, dock, or workspace behavior is configured
 - [ ] Application launcher works
 - [ ] Preferred wallpaper selected
 - [ ] Required keyboard shortcuts configured
+- [ ] Default terminal and desktop applications selected
 
 The goal is a comfortable, functional desktop—not an identical clone of another machine.
 

@@ -1,50 +1,88 @@
 # New Machine Checklist
 
-This document is the companion to `bootstrap.sh`.
+This checklist accompanies the [New Workstation Rollout](workstation-rollout.md).
 
-The goal is to turn a fresh CachyOS installation into my personal workstation as efficiently and consistently as possible.
+The goal is to turn a fresh CachyOS installation into a Mono workstation efficiently and consistently while leaving desktop personalization intentional and manual.
 
-**Automate the repeatable. Synchronize the personal. Document the intentional.**
+> **Automate the repeatable. Synchronize the personal. Document the intentional.**
 
-## Initial Setup
+## Base Installation
 
-- [ ] Install CachyOS with KDE Plasma
-- [ ] Install Git
-- [ ] Install `paru`
-- [ ] Launch Shelly
-- [ ] Enable AUR support in Shelly
-- [ ] Enable Flatpak support in Shelly
-- [ ] Generate a machine-specific SSH key
-- [ ] Add the SSH public key to GitHub
-- [ ] Clone the workstation repository into `~/Projects/workstation`
-- [ ] Install `rclone`
-- [ ] Configure the `monocloud` WebDAV remote using the `workstation-rclone` Nextcloud app password
-- [ ] Verify access with `rclone lsd monocloud:`
+- [ ] Install CachyOS
+- [ ] Select the desktop environment you intend to keep
+- [ ] Connect to the internet
+- [ ] Complete all system updates
+- [ ] Reboot if required
+- [ ] Install and unlock 1Password
 
-## Restore Environment
+## Commissioning
 
-- [ ] Run `bootstrap.sh`
-- [ ] Log out and back in
-- [ ] Verify the Plasma theme and panel appearance
-- [ ] Install Kitty
-- [ ] Make Kitty the default terminal
-- [ ] Install LucidLink
-- [ ] Install NinjaRMM
-- [ ] Install GameVox
+- [ ] Download `commission-workstation.sh` from the Nextcloud commissioning folder
+- [ ] Make the script executable
+- [ ] Run the commissioning script
+- [ ] Confirm Git identity
+- [ ] Authenticate GitHub
+- [ ] Configure the `monocloud` rclone remote
+- [ ] Confirm the workstation repository was cloned
+- [ ] Create the machine identity
+
+## Rollout Selection
+
+Choose exactly one rollout:
+
+- [ ] **KDE Plasma** — use the established KDE workstation package set
+- [ ] **Desktop-neutral** — use with GNOME, COSMIC, XFCE, or another desktop
+
+The desktop-neutral rollout does not install or configure a desktop environment.
+
+To reopen the selector:
+
+```bash
+cd ~/Projects/workstation
+./scripts/select-bootstrap.sh
+```
+
+## Optional Components
+
+Install only those required on this machine:
+
+- [ ] LucidLink
+- [ ] Ninja Remote Player
+- [ ] NoMachine
+- [ ] ScreenConnect
+- [ ] Framework audio troubleshooting, if required
 - [ ] Copy the Windows VM into `~/VirtualMachines/Windows11/`
-- [ ] Import the Windows VM definition into Virt-Manager
+- [ ] Import the Windows VM into Virt-Manager
 
-## Accounts & Authentication
+## Desktop Setup
+
+Configure these manually for the selected desktop environment:
+
+- [ ] Displays, orientation, scaling, and refresh rates
+- [ ] Panels, docks, or workspaces
+- [ ] Wallpaper
+- [ ] Theme and icons
+- [ ] Global shortcuts
+- [ ] Default terminal
+- [ ] Default file manager and desktop applications
+
+## Accounts and Synchronization
 
 - [ ] Sign in to 1Password
 - [ ] Sign in to Firefox and allow Sync
 - [ ] Sign in to Google Chrome
-- [ ] Install Joplin
 - [ ] Sign in to Joplin Cloud and enable synchronization
-- [ ] Configure Talanoa and add the Fastmail account (`jmarshall@marshallnetworks.com`)
-- [ ] Sign in to Fastmail (Flatpak)
+- [ ] Configure Talanoa and add the Fastmail account
+- [ ] Sign in to Fastmail
 - [ ] Sign in to Discord
 - [ ] Pair Signal with the phone
-- [ ] Pair KDE Connect
+- [ ] Pair KDE Connect only when using it
 - [ ] Sign in to Ente Auth
 - [ ] Sign in to Nextcloud Desktop
+
+## Completion
+
+- [ ] Configure Microsoft Edge profiles and PWAs
+- [ ] Reboot
+- [ ] Complete the workstation acceptance test
+- [ ] Record any machine-specific exceptions in the documentation

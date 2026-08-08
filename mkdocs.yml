@@ -57,6 +57,7 @@ nav:
 
   - 🚀 Build:
       - New Workstation: workstation-rollout.md
+      - New Machine Checklist: new-machine.md
       - Acceptance Test: acceptance-test.md
 
   - 🧰 Components:

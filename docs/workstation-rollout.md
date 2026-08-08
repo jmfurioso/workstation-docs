@@ -4,41 +4,51 @@
 
 This guide takes a fresh CachyOS installation to a ready-to-use Mono workstation.
 
-Plasma appearance and desktop personalization are intentionally manual. The automated rollout focuses on applications, services, configuration required for functionality, and specialized component installers.
+The rollout supports two paths:
+
+| Rollout | Use when |
+| --- | --- |
+| **KDE Plasma** | CachyOS was installed with KDE Plasma |
+| **Desktop-neutral** | CachyOS was installed with GNOME, COSMIC, XFCE, or another desktop |
+
+Desktop appearance and personalization are intentionally manual. The automated rollout focuses on applications, services, configuration required for functionality, and specialized component installers.
 
 ---
 
 ## 🗺️ Rollout Overview
 
 ```text
-Install CachyOS
-      │
-      ▼
-Update System
-      │
-      ▼
-Install 1Password
-      │
-      ▼
-Download Commissioning Script
-      │
-      ▼
-Commission Workstation
-      │
-      ▼
-Bootstrap
-      │
-      ▼
-Install Required Components
-      │
-      ▼
-Configure Microsoft Edge + PWAs
-      │
-      ▼
-Personalize Plasma
-      │
-      ▼
-Acceptance Test
+Install CachyOS and choose a desktop
+              │
+              ▼
+         Update System
+              │
+              ▼
+       Install 1Password
+              │
+              ▼
+ Download Commissioning Script
+              │
+              ▼
+     Commission Workstation
+              │
+              ▼
+      Select Rollout Path
+        ┌─────┴─────┐
+        ▼           ▼
+       KDE       Neutral
+        └─────┬─────┘
+              ▼
+ Install Required Components
+              │
+              ▼
+ Configure Microsoft Edge + PWAs
+              │
+              ▼
+    Personalize the Desktop
+              │
+              ▼
+       Acceptance Test
 ```
 
 ---
@@ -49,10 +59,20 @@ Perform a normal CachyOS installation.
 
 Use:
 
+- The desktop environment you intend to keep
+- Wayland when supported and appropriate
+- A normal user account
+- A working Internet connection
+
+Supported rollout examples include:
+
 - KDE Plasma
-- Wayland
-- Normal user account
-- Working Internet connection
+- GNOME
+- COSMIC
+- XFCE
+- Another CachyOS-supported desktop environment
+
+Do not install KDE merely to obtain workstation applications. The desktop-neutral rollout uses the environment selected during the CachyOS installation.
 
 After reaching the desktop, update the system:
 
@@ -113,9 +133,9 @@ It will:
 - Install `paru` if required
 - Authenticate GitHub
 - Configure the `monocloud:` rclone remote
-- Clone the private workstation repository
+- Clone the workstation repository
 - Create the machine identity
-- Offer to launch bootstrap
+- Offer to launch the rollout selector
 
 ### GitHub
 
@@ -137,11 +157,11 @@ fw12
 desktop
 ```
 
-For the new laptop, choose its permanent workstation name and use that consistently.
+For a new laptop, choose its permanent workstation name and use that consistently.
 
 ### Expected Result
 
-Before bootstrap begins, commissioning should report successful:
+Before rollout selection begins, commissioning should report successful:
 
 - Git identity configuration
 - GitHub authentication
@@ -159,48 +179,101 @@ choose **Yes**.
 
 ---
 
-# Phase 5 — Bootstrap
+# Phase 5 — Select the Rollout
 
-Bootstrap builds the functional workstation.
+Commissioning launches:
+
+```text
+Workstation Bootstrap Selection
+
+1) KDE Plasma rollout
+2) Desktop-neutral rollout
+Q) Quit without running a bootstrap
+```
+
+Choose exactly one path.
+
+## KDE Plasma Rollout
+
+Choose **KDE Plasma** only when KDE Plasma is the installed desktop environment.
+
+This runs:
+
+```bash
+./scripts/bootstrap.sh
+```
 
 It installs:
 
-- Common official Arch/CachyOS packages
-- Common AUR packages
-- Flatpak applications
-- Curated non-Plasma configuration
-- Curated non-Plasma local files
+- The established official Arch/CachyOS package set
+- KDE and Plasma applications included in that baseline
+- Common AUR applications
+- Common Flatpak applications
+- Curated non-Plasma configuration and local files, when present
 
-Bootstrap intentionally leaves these alone:
+It intentionally leaves Plasma themes, panels, wallpaper, global shortcuts, and other personalization manual.
 
-- Plasma themes
-- Look-and-Feel packages
-- Panel layouts
-- Window decorations
-- Icon themes
-- Wallpapers
-- Global shortcuts
-- Other desktop personalization
+## Desktop-Neutral Rollout
 
-Those are handled later.
+Choose **Desktop-neutral** when using GNOME, COSMIC, XFCE, or another non-KDE desktop.
+
+This runs:
+
+```bash
+./scripts/bootstrap-neutral.sh
+```
+
+It installs:
+
+- Desktop-independent official Arch/CachyOS packages
+- Desktop-independent AUR applications
+- Desktop-independent Flatpak applications
+
+It does **not**:
+
+- Install KDE or Plasma
+- Install GNOME or COSMIC components
+- Install another desktop environment
+- Restore desktop configuration
+- Restore desktop themes, panels, wallpaper, layouts, or global shortcuts
+- Install KDE applications such as Dolphin, Kate, Gwenview, Ark, or Spectacle
+
+The selected desktop environment supplies its own file manager, image viewer, archive manager, screenshot tool, Bluetooth frontend, and other desktop utilities.
+
+## Run the Selector Later
+
+To reopen the selector manually:
+
+```bash
+cd ~/Projects/workstation
+./scripts/select-bootstrap.sh
+```
 
 ---
 
 ## Optional Component Installers
 
-At the end of bootstrap you will be asked whether to install optional workstation components.
+At the end of either bootstrap, you will be asked whether to install optional workstation components.
 
 Choose **Yes** for the components required on this machine.
 
-Current specialized installers include:
+Normally offered installers include:
 
 | Component | Purpose |
-|---|---|
+| --- | --- |
 | LucidLink | LucidLink client installation and Arch-specific handling |
 | NoMachine | Remote desktop |
 | ScreenConnect | Remote support |
 | Ninja Remote Player | NinjaOne remote workstation access |
-| Framework Audio | Framework-specific microphone/audio configuration |
+
+Hardware-specific troubleshooting installers are intentionally not offered during normal provisioning.
+
+For example, run the Framework audio installer manually only when required:
+
+```bash
+cd ~/Projects/workstation
+./scripts/install-framework-audio.sh
+```
 
 The installer scripts handle software that needs more than ordinary package installation.
 
@@ -210,7 +283,7 @@ If uncertain about a component, see:
 
 ---
 
-# Phase 6 — Reboot and Verify Core System
+# Phase 6 — Reboot and Verify the Core System
 
 After bootstrap and the required component installers complete:
 
@@ -222,6 +295,8 @@ Log back in.
 
 Before spending time on appearance, verify the important functional pieces:
 
+- The intended desktop environment launches
+- No unintended second desktop environment was installed
 - Repository exists at `~/Projects/workstation`
 - Internet works
 - 1Password works
@@ -245,8 +320,6 @@ Create the required profiles:
 
 Authenticate each profile as required.
 
----
-
 ## Teams PWAs
 
 Create a Teams PWA for each required organization/profile:
@@ -254,8 +327,6 @@ Create a Teams PWA for each required organization/profile:
 - Teams — Inside
 - Teams — SOS
 - Teams — Tagwall
-
----
 
 ## Outlook PWAs
 
@@ -269,23 +340,33 @@ Authentication and MFA remain manual.
 
 ---
 
-# Phase 8 — Personalize Plasma
+# Phase 8 — Personalize the Desktop
 
 Now make the workstation yours.
 
-Desktop personalization is deliberately outside the automated bootstrap.
+Desktop personalization is deliberately outside both automated rollouts.
+
+Configure the selected environment manually, including:
+
+- Displays, orientation, scaling, and refresh rates
+- Panels, docks, or workspaces
+- Wallpaper
+- Theme and icons
+- Global shortcuts
+- Default terminal
+- Default file manager and desktop applications
 
 ➡️ [Open Desktop Personalization](desktop-customization.md)
 
-## Current Theme Reference
+## KDE Theme Reference
 
-The current preferred starting point is:
+When using KDE Plasma, the current preferred starting point is:
 
 [LibrePixels Catppuccin Theme](https://www.librepixels.com/en/tutoriales/catppuccintheme/){ target="_blank" rel="noopener" }
 
 Follow the author's current instructions rather than trying to reproduce theme settings from another workstation.
 
-Additional theme references can be added to the Personalization page over time.
+This reference does not apply to GNOME, COSMIC, XFCE, or other desktop environments.
 
 ---
 

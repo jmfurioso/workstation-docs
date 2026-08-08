@@ -2,15 +2,17 @@
 
 Desktop appearance is intentionally **not automated**.
 
-The workstation rollout creates a functional, consistent software environment. Plasma appearance remains a personal choice and is configured manually after the core workstation is working.
+The workstation rollout creates a functional, consistent software environment. Appearance remains a personal choice and is configured manually after the core workstation is working.
+
+This policy applies to KDE Plasma, GNOME, COSMIC, XFCE, and other desktop environments.
 
 ---
 
-# Plasma Theme
+# KDE Plasma Theme
 
 ## LibrePixels Catppuccin
 
-The current preferred starting point:
+When using KDE Plasma, the current preferred starting point is:
 
 [Open the LibrePixels Catppuccin tutorial](https://www.librepixels.com/en/tutoriales/catppuccintheme/){ target="_blank" rel="noopener" }
 
@@ -30,9 +32,22 @@ These assets are intentionally **not copied from another workstation**.
 
 !!! important
 
-    Do **not** run `bootstrap.sh` afterward to restore a desktop layout.
+    Do **not** run bootstrap afterward expecting it to restore a desktop layout.
 
-    Bootstrap deliberately leaves Plasma personalization untouched.
+    Both rollout paths deliberately leave desktop personalization untouched.
+
+---
+
+# Other Desktop Environments
+
+When using GNOME, COSMIC, XFCE, or another desktop:
+
+1. Run the desktop-neutral workstation rollout.
+2. Use that environment's own settings and applications.
+3. Configure appearance, panels, shortcuts, and default applications manually.
+4. Do not install the KDE rollout merely to obtain workstation applications.
+
+Individual KDE or Qt applications can be installed later if specifically wanted, but they are intentionally absent from the neutral rollout.
 
 ---
 
@@ -42,9 +57,9 @@ This page can become a collection of themes worth revisiting.
 
 ## Current References
 
-| Theme | Reference |
-|---|---|
-| LibrePixels Catppuccin | [Installation Guide](https://www.librepixels.com/en/tutoriales/catppuccintheme/){ target="_blank" rel="noopener" } |
+| Desktop | Theme | Reference |
+| --- | --- | --- |
+| KDE Plasma | LibrePixels Catppuccin | [Installation Guide](https://www.librepixels.com/en/tutoriales/catppuccintheme/){ target="_blank" rel="noopener" } |
 
 Add additional themes here when you find ones worth keeping.
 
@@ -56,31 +71,32 @@ Choose the wallpaper manually.
 
 Wallpaper is intentionally **not**:
 
-- captured by `capture-workstation.sh`
-- restored by `bootstrap.sh`
-- standardized between workstations
+- Captured by `capture-workstation.sh`
+- Restored by either bootstrap
+- Standardized between workstations
 
 Each workstation can have its own wallpaper.
 
 ---
 
-# Plasma Layout
+# Desktop Layout
 
-Configure the Plasma desktop manually.
+Configure the selected desktop environment manually.
 
 This includes:
 
-- Panels
-- Panel size and position
+- Panels, docks, or workspaces
+- Panel or dock size and position
 - Application launcher
-- Widgets
+- Widgets or extensions
 - Desktop layout
-- Virtual desktops
+- Virtual desktops or workspaces
 - Window decorations
 - Icons
 - Global shortcuts
+- Default desktop applications
 
-These settings are no longer promoted from one workstation to another through `capture-workstation.sh`.
+These settings are not promoted from one workstation to another through `capture-workstation.sh`.
 
 ---
 
@@ -152,4 +168,4 @@ This keeps application standardization separate from appearance.
 
 > **Automate functionality. Personalize appearance.**
 
-The workstation project should reliably reproduce the tools required for daily work without trying to clone every visual preference from another machine.
+The workstation project should reliably reproduce the tools required for daily work without trying to clone every visual preference from another machine or tying the workstation core to a particular desktop environment.
