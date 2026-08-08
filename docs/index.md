@@ -2,7 +2,6 @@
 
 # Mono's Workstation
 
-> **Automate the repeatable. Synchronize the personal. Document the intentional.**
 
 Welcome to the **Mono's Workstation** operations portal.
 
