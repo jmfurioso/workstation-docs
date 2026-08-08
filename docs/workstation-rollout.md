@@ -1,12 +1,14 @@
 # 🚀 New Workstation Rollout
 
-> Estimated time: **30–45 minutes**
+> Use this page from top to bottom. Don't rely on memory.
 
-This guide provisions a new CachyOS workstation from a fresh installation to a fully operational workstation.
+This guide takes a fresh CachyOS installation to a ready-to-use Mono workstation.
+
+Plasma appearance and desktop personalization are intentionally manual. The automated rollout focuses on applications, services, configuration required for functionality, and specialized component installers.
 
 ---
 
-## Overview
+## 🗺️ Rollout Overview
 
 ```text
 Install CachyOS
@@ -18,19 +20,22 @@ Update System
 Install 1Password
       │
       ▼
-Run Commissioning
+Download Commissioning Script
+      │
+      ▼
+Commission Workstation
       │
       ▼
 Bootstrap
       │
       ▼
-Reboot
+Install Required Components
       │
       ▼
-Install Components
+Configure Microsoft Edge + PWAs
       │
       ▼
-Configure Microsoft PWAs
+Personalize Plasma
       │
       ▼
 Acceptance Test
@@ -38,131 +43,260 @@ Acceptance Test
 
 ---
 
-# Phase 1 — Base Operating System
+# Phase 1 — Install CachyOS
 
-## Install CachyOS
+Perform a normal CachyOS installation.
 
-Complete a standard installation.
-
-Recommended:
+Use:
 
 - KDE Plasma
 - Wayland
-- Internet connected
+- Normal user account
+- Working Internet connection
 
----
-
-## Update
+After reaching the desktop, update the system:
 
 ```bash
 sudo pacman -Syu
 ```
 
-Reboot if required.
+If the update installs a new kernel or other major system components, reboot before continuing.
 
 ---
 
-# Phase 2 — Identity
+# Phase 2 — Install 1Password
 
-## Install 1Password
+Install and launch 1Password.
 
-Sign into your account.
+Sign into the vault and verify that credentials are available before continuing.
 
-Unlock your vault.
+You will need credentials during commissioning and application setup.
 
 ---
 
-## Download Commissioning Script
+# Phase 3 — Get the Commissioning Script
 
-Navigate to:
+Open Nextcloud and navigate to:
 
-```
-Nextcloud
-└── IT Infrastructure
-    └── Workstation
-        └── Commissioning
+```text
+IT Infrastructure
+└── Workstation
+    └── Commissioning
 ```
 
 Download:
 
-```
+```text
 commission-workstation.sh
 ```
 
+to `~/Downloads`.
+
 ---
 
-# Phase 3 — Commission
+# Phase 4 — Commission the Workstation
+
+Open a terminal:
 
 ```bash
 cd ~/Downloads
-
 chmod +x commission-workstation.sh
-
 ./commission-workstation.sh
 ```
 
-Expected result:
+The commissioning script will guide you through the process.
 
-- ✅ GitHub authenticated
-- ✅ Git identity configured
-- ✅ rclone configured
-- ✅ Repository cloned
-- ✅ Machine identity created
-- ✅ bootstrap launched
+It will:
 
----
+- Install commissioning prerequisites
+- Configure Git identity
+- Install `paru` if required
+- Authenticate GitHub
+- Configure the `monocloud:` rclone remote
+- Clone the private workstation repository
+- Create the machine identity
+- Offer to launch bootstrap
 
-# Phase 4 — Bootstrap
+### GitHub
 
-Allow bootstrap to finish.
+Complete the browser authentication when prompted.
 
-Expected:
+### Nextcloud
 
-- Official packages
-- AUR packages
-- Flatpaks
-- Wallpaper
-- Plasma configuration
-- Dotfiles
+Use the requested Nextcloud username and app password from 1Password.
 
-Reboot after completion.
+### Machine Name
 
----
+Use a short lowercase identifier appropriate for the machine.
 
-# Phase 5 — Component Installers
+Examples:
 
-Run only those required for this workstation.
+```text
+fw13
+fw12
+desktop
+```
 
-| Component | Script |
-|-----------|--------|
-| ScreenConnect | `install-screenconnect.sh` |
-| NoMachine | `install-nomachine.sh` |
-| LucidLink | `install-lucidlink.sh` |
-| Ninja Remote Player | `install-ninjaone.sh` |
-| Framework Audio | `install-framework-audio.sh` |
+For the new laptop, choose its permanent workstation name and use that consistently.
 
----
+### Expected Result
 
-# Phase 6 — Microsoft
+Before bootstrap begins, commissioning should report successful:
 
-Create Edge profiles manually.
+- Git identity configuration
+- GitHub authentication
+- Nextcloud access
+- Repository preparation
+- Machine identity creation
 
-Install:
+When asked:
 
-- Teams (Inside)
-- Teams (SOS)
-- Teams (Tagwall)
+```text
+Run workstation bootstrap now? [Y/n]
+```
 
-Install:
-
-- Outlook (Inside)
-- Outlook (SOS)
-- Outlook (Tagwall)
+choose **Yes**.
 
 ---
 
-# Phase 7 — Acceptance
+# Phase 5 — Bootstrap
 
-Proceed directly to:
+Bootstrap builds the functional workstation.
 
-➡️ **Acceptance Test**
+It installs:
+
+- Common official Arch/CachyOS packages
+- Common AUR packages
+- Flatpak applications
+- Curated non-Plasma configuration
+- Curated non-Plasma local files
+
+Bootstrap intentionally leaves these alone:
+
+- Plasma themes
+- Look-and-Feel packages
+- Panel layouts
+- Window decorations
+- Icon themes
+- Wallpapers
+- Global shortcuts
+- Other desktop personalization
+
+Those are handled later.
+
+---
+
+## Optional Component Installers
+
+At the end of bootstrap you will be asked whether to install optional workstation components.
+
+Choose **Yes** for the components required on this machine.
+
+Current specialized installers include:
+
+| Component | Purpose |
+|---|---|
+| LucidLink | LucidLink client installation and Arch-specific handling |
+| NoMachine | Remote desktop |
+| ScreenConnect | Remote support |
+| Ninja Remote Player | NinjaOne remote workstation access |
+| Framework Audio | Framework-specific microphone/audio configuration |
+
+The installer scripts handle software that needs more than ordinary package installation.
+
+If uncertain about a component, see:
+
+➡️ [Component Installers](component-installers.md)
+
+---
+
+# Phase 6 — Reboot and Verify Core System
+
+After bootstrap and the required component installers complete:
+
+```bash
+sudo reboot
+```
+
+Log back in.
+
+Before spending time on appearance, verify the important functional pieces:
+
+- Repository exists at `~/Projects/workstation`
+- Internet works
+- 1Password works
+- Browser works
+- LucidLink mounts correctly, if installed
+- Remote-access tools launch, if installed
+
+---
+
+# Phase 7 — Microsoft Edge and PWAs
+
+Microsoft Edge is installed as part of the workstation software baseline, but profiles and PWAs are intentionally configured manually.
+
+## Create Edge Profiles
+
+Create the required profiles:
+
+- Inside
+- SOS
+- Tagwall
+
+Authenticate each profile as required.
+
+---
+
+## Teams PWAs
+
+Create a Teams PWA for each required organization/profile:
+
+- Teams — Inside
+- Teams — SOS
+- Teams — Tagwall
+
+---
+
+## Outlook PWAs
+
+Create an Outlook PWA for each required organization/profile:
+
+- Outlook — Inside
+- Outlook — SOS
+- Outlook — Tagwall
+
+Authentication and MFA remain manual.
+
+---
+
+# Phase 8 — Personalize Plasma
+
+Now make the workstation yours.
+
+Desktop personalization is deliberately outside the automated bootstrap.
+
+➡️ [Open Desktop Personalization](desktop-customization.md)
+
+## Current Theme Reference
+
+The current preferred starting point is:
+
+[LibrePixels Catppuccin Theme](https://www.librepixels.com/en/tutoriales/catppuccintheme/){ target="_blank" rel="noopener" }
+
+Follow the author's current instructions rather than trying to reproduce theme settings from another workstation.
+
+Additional theme references can be added to the Personalization page over time.
+
+---
+
+# Phase 9 — Acceptance Test
+
+Do not consider the rollout finished until the acceptance checklist passes.
+
+➡️ [Open Workstation Acceptance Test](acceptance-test.md)
+
+The goal is not for every workstation to look identical.
+
+The goal is:
+
+> **A complete, functional Mono workstation that is ready for daily use.**

@@ -1,112 +1,155 @@
-# 🎨 Desktop Customization
+# 🎨 Desktop Personalization
 
-This document covers optional workstation personalization.
+Desktop appearance is intentionally **not automated**.
 
-The workstation is fully functional without these steps.
-
----
-
-# LibrePixels Catppuccin Theme
-
-Reference:
-
-https://www.librepixels.com/en/tutoriales/catppuccintheme/
-
-Follow the guide exactly.
-
-When complete, run:
-
-```bash
-cd ~/Projects/workstation
-
-./scripts/bootstrap.sh
-```
-
-to restore:
-
-- wallpaper
-- Plasma configuration
-- panel layout
-- shortcuts
-- workstation preferences
+The workstation rollout creates a functional, consistent software environment. Plasma appearance remains a personal choice and is configured manually after the core workstation is working.
 
 ---
 
-# Microsoft Edge PWAs
+# Plasma Theme
 
-Create manually.
+## LibrePixels Catppuccin
 
-## Teams
+The current preferred starting point:
 
-- Inside
-- SOS
-- Tagwall
+[Open the LibrePixels Catppuccin tutorial](https://www.librepixels.com/en/tutoriales/catppuccintheme/){ target="_blank" rel="noopener" }
 
-## Outlook
+Follow the author's current instructions.
 
-- Inside
-- SOS
-- Tagwall
+The tutorial may install or configure:
 
-These remain intentionally manual.
+- Plasma theme
+- Color scheme
+- Window decorations
+- Icons
+- Fonts
+- Plasmoids
+- Panel layout
+
+These assets are intentionally **not copied from another workstation**.
+
+!!! important
+
+    Do **not** run `bootstrap.sh` afterward to restore a desktop layout.
+
+    Bootstrap deliberately leaves Plasma personalization untouched.
 
 ---
 
-# Optional Applications
+# Other Themes
 
-Install only if desired.
+This page can become a collection of themes worth revisiting.
 
-Examples:
+## Current References
 
-- Google Earth Pro
-- KTailctl
-- Proton Mail
-- Other personal desktop applications
+| Theme | Reference |
+|---|---|
+| LibrePixels Catppuccin | [Installation Guide](https://www.librepixels.com/en/tutoriales/catppuccintheme/){ target="_blank" rel="noopener" } |
+
+Add additional themes here when you find ones worth keeping.
 
 ---
 
 # Wallpaper
 
-The workstation wallpaper is restored automatically by bootstrap.
+Choose the wallpaper manually.
 
-Changing wallpapers is considered personal customization.
+Wallpaper is intentionally **not**:
 
-Run:
+- captured by `capture-workstation.sh`
+- restored by `bootstrap.sh`
+- standardized between workstations
 
-```bash
-./scripts/capture-workstation.sh
-```
-
-when promoting a new wallpaper to the workstation standard.
+Each workstation can have its own wallpaper.
 
 ---
 
 # Plasma Layout
 
-The desktop workstation is the reference implementation.
+Configure the Plasma desktop manually.
 
-When significant layout improvements are made:
+This includes:
 
-```bash
-./scripts/capture-workstation.sh
-```
+- Panels
+- Panel size and position
+- Application launcher
+- Widgets
+- Desktop layout
+- Virtual desktops
+- Window decorations
+- Icons
+- Global shortcuts
 
-Commit the updated configuration.
+These settings are no longer promoted from one workstation to another through `capture-workstation.sh`.
 
-Future workstation deployments inherit the new layout.
+---
+
+# Microsoft Edge Profiles
+
+Create the required Edge profiles manually.
+
+Current profiles:
+
+- Inside
+- SOS
+- Tagwall
+
+Authenticate each profile as required.
+
+---
+
+# Teams PWAs
+
+Create Teams PWAs in the appropriate Edge profiles.
+
+Current organizations:
+
+- Teams — Inside
+- Teams — SOS
+- Teams — Tagwall
+
+---
+
+# Outlook PWAs
+
+Create Outlook PWAs in the appropriate Edge profiles.
+
+Current organizations:
+
+- Outlook — Inside
+- Outlook — SOS
+- Outlook — Tagwall
+
+Authentication and MFA remain intentionally manual.
+
+---
+
+# Optional Applications
+
+Install additional personal applications only when desired.
+
+They do not need to become part of the workstation standard unless you decide they should be present on future machines.
+
+---
+
+# What Capture Does Now
+
+`capture-workstation.sh` is intentionally narrow.
+
+It captures:
+
+- Installed official package inventory
+- Installed foreign/AUR package inventory
+- Installed Flatpak inventory
+
+It does **not** capture desktop personalization.
+
+This keeps application standardization separate from appearance.
 
 ---
 
 # Philosophy
 
-Automate:
+> **Automate functionality. Personalize appearance.**
 
-- repeatable configuration
-
-Document:
-
-- intentional manual customization
-
-Avoid:
-
-- automating highly personal desktop preferences unless they become part of the workstation standard.
+The workstation project should reliably reproduce the tools required for daily work without trying to clone every visual preference from another machine.
